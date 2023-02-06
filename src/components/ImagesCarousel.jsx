@@ -4,8 +4,14 @@ import { convertToSrc } from '../util';
 import Image from './Image';
 import styled, { keyframes } from 'styled-components';
 
-const Section = styled.section``;
-
+const moveGorisontally = (x) => keyframes`
+    from{
+        transform: translateX(${x.from}px);
+    }
+    to {
+        transform: translateX(${x.to}px);
+    }
+`;
 const Panel = styled.div`
     margin-top: 20px;
     display: flex;
@@ -24,7 +30,10 @@ const Сonveyor = styled.ul`
     width: fit-content;
     white-space: nowrap;
     list-style: none;
-    transform: translateX(10%);
+
+    animation-name: ${(props) => moveGorisontally(props.moving)};
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
 `;
 
 const ImageContainer = styled.li`
@@ -43,9 +52,15 @@ const Title = styled.h2`
 
 const ImagesCarousel = ({ url, title }) => {
     const [imagesSrc, setImagesSrc] = useState([]);
+    const [moving, setMoving] = useState({ from: 0, to: 0 });
 
-    const turnLeft = () => {};
-    const turnRight = () => {};
+    const movingValue = 400;
+    const turnLeft = () => {
+        setMoving({ from: moving.to, to: moving.to + movingValue });
+    };
+    const turnRight = () => {
+        setMoving({ from: moving.to, to: moving.to - movingValue });
+    };
 
     useEffect(() => {
         fetchImagesNames(url).then((names) => {
@@ -60,12 +75,12 @@ const ImagesCarousel = ({ url, title }) => {
     }, []);
 
     return (
-        <Section>
+        <section>
             <Title>{title}</Title>
             <Panel>
                 <Button onClick={turnLeft}>a</Button>
                 <Content>
-                    <Сonveyor>
+                    <Сonveyor moving={moving}>
                         {imagesSrc.map((src, index) => (
                             <ImageContainer key={index}>
                                 <Image src={src} />
@@ -75,7 +90,7 @@ const ImagesCarousel = ({ url, title }) => {
                 </Content>
                 <Button onClick={turnRight}>b</Button>
             </Panel>
-        </Section>
+        </section>
     );
 };
 
