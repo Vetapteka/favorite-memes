@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { fetchImage, fetchImagesNames } from '../API';
 import { convertToSrc } from '../util';
 import Image from './Image';
-import { COLOR_LIGHT_PINK } from '../stylesVariables';
+import { COLOR_PINK_LIGHT, COLOR_GREY_LIGHT } from '../stylesVariables';
+import arrowIcon from '../assets/arrow.png';
 import styled, { keyframes } from 'styled-components';
 
 const moveGorisontally = (x) => keyframes`
@@ -20,10 +21,12 @@ const Panel = styled.div`
 `;
 
 const Button = styled.button`
-    width: 3%;
+    width: 40px;
+    background-color: white;
+    border: 1px dashed ${COLOR_GREY_LIGHT};
+    border-radius: 10px;
 `;
 const Content = styled.div`
-    width: 94%;
     overflow: hidden;
 `;
 
@@ -44,7 +47,7 @@ const ImageContainer = styled.li`
 `;
 
 const Title = styled.h2`
-    background-color: ${COLOR_LIGHT_PINK};
+    background-color: ${COLOR_PINK_LIGHT};
     display: block;
     width: fit-content;
     padding: 10px;
@@ -55,7 +58,7 @@ const ImagesCarousel = ({ url, title }) => {
     const [imagesSrc, setImagesSrc] = useState([]);
     const [moving, setMoving] = useState({ from: 0, to: 0 });
 
-    const movingValue = 400;
+    const movingValue = 200;
     const turnLeft = () => {
         setMoving({ from: moving.to, to: moving.to + movingValue });
     };
@@ -79,7 +82,12 @@ const ImagesCarousel = ({ url, title }) => {
         <section>
             <Title>{title}</Title>
             <Panel>
-                <Button onClick={turnLeft}>a</Button>
+                <Button onClick={turnLeft}>
+                    <img
+                        style={{ transform: 'rotate(180deg)' }}
+                        src={arrowIcon}
+                    />
+                </Button>
                 <Content>
                     <Сonveyor moving={moving}>
                         {imagesSrc.map((src, index) => (
@@ -89,7 +97,9 @@ const ImagesCarousel = ({ url, title }) => {
                         ))}
                     </Сonveyor>
                 </Content>
-                <Button onClick={turnRight}>b</Button>
+                <Button onClick={turnRight}>
+                    <img src={arrowIcon} />
+                </Button>
             </Panel>
         </section>
     );

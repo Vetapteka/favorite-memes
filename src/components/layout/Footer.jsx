@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from './Container';
 import { CODE_URL, GIT_URL } from '../../global';
-import { COLOR_FIOL, COLOR_LIGHT_PINK } from '../../stylesVariables';
+import { COLOR_FIOL, COLOR_PINK_LIGHT } from '../../stylesVariables';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
@@ -10,7 +10,7 @@ const StyledFooter = styled.footer`
 
 const Content = styled.div`
     display: flex;
-    background-color: ${COLOR_LIGHT_PINK};
+    background-color: ${COLOR_PINK_LIGHT};
     padding: 10px;
     border-radius: 10px;
     justify-content: space-around;
