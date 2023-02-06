@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchImage, fetchImagesNames } from '../API';
 import { convertToSrc } from '../util';
 import Image from './Image';
+import { COLOR_LIGHT_PINK } from '../stylesVariables';
 import styled, { keyframes } from 'styled-components';
 
 const moveGorisontally = (x) => keyframes`
@@ -43,7 +44,7 @@ const ImageContainer = styled.li`
 `;
 
 const Title = styled.h2`
-    background-color: #fce9e8;
+    background-color: ${COLOR_LIGHT_PINK};
     display: block;
     width: fit-content;
     padding: 10px;

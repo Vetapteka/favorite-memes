@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from './Container';
 import { CODE_URL, GIT_URL } from '../../global';
+import { COLOR_FIOL, COLOR_LIGHT_PINK } from '../../stylesVariables';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
@@ -9,7 +10,14 @@ const StyledFooter = styled.footer`
 
 const Content = styled.div`
     display: flex;
-    justify-content: space-between;
+    background-color: ${COLOR_LIGHT_PINK};
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: space-around;
+`;
+
+const Link = styled.a`
+    color: ${COLOR_FIOL};
 `;
 
 const Footer = () => {
@@ -17,9 +25,13 @@ const Footer = () => {
         <StyledFooter>
             <Container>
                 <Content>
-                    <a href={CODE_URL}>source code</a>
+                    <Link href={CODE_URL} target='_blank'>
+                        source code
+                    </Link>
                     <div>{new Date().getFullYear()}</div>
-                    <a href={GIT_URL}>about me</a>
+                    <Link href={GIT_URL} target='_blank'>
+                        about me
+                    </Link>
                 </Content>
             </Container>
         </StyledFooter>

@@ -3,13 +3,6 @@ import { COLOR_PINK } from '../../stylesVariables';
 import Container from './Container';
 import styled from 'styled-components';
 
-const StyledHeader = styled.header`
-    position: fixed;
-    width: 100%;
-    left: 0;
-    z-index: 100;
-`;
-
 const Content = styled.div`
     display: flex;
     justify-content: center;
@@ -20,13 +13,13 @@ const Content = styled.div`
 
 const Header = () => {
     return (
-        <StyledHeader>
+        <header>
             <Container>
                 <Content>
                     <h1>это валидная html-ка с любимыми мемами</h1>
                 </Content>
             </Container>
-        </StyledHeader>
+        </header>
     );
 };
 
