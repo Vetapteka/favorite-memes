@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "d7a849f702057b06c874",
-    "url": "/favorite-memes/static/js/main.d7a849f7.chunk.js"
+    "revision": "d12070df712973b36836",
+    "url": "/favorite-memes/static/js/main.d12070df.chunk.js"
   },
   {
     "revision": "d8679607e902f36e89ee",
@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/favorite-memes/static/js/runtime~main.35678c35.js"
   },
   {
-    "revision": "1796c2d4bd1424efed93a56998eec063",
+    "revision": "e312613bc7c2ac33937eb3b9a3cead88",
     "url": "/favorite-memes/index.html"
   }
 ];
