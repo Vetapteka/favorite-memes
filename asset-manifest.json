@@ -1,11 +1,11 @@
 {
-  "main.js": "/favorite-memes/static/js/main.d12070df.chunk.js",
-  "main.js.map": "/favorite-memes/static/js/main.d12070df.chunk.js.map",
-  "static/js/1.d8679607.chunk.js": "/favorite-memes/static/js/1.d8679607.chunk.js",
-  "static/js/1.d8679607.chunk.js.map": "/favorite-memes/static/js/1.d8679607.chunk.js.map",
-  "runtime~main.js": "/favorite-memes/static/js/runtime~main.35678c35.js",
-  "runtime~main.js.map": "/favorite-memes/static/js/runtime~main.35678c35.js.map",
-  "index.html": "/favorite-memes/index.html",
-  "precache-manifest.b7582b03c7256bb3f2adfdab15350324.js": "/favorite-memes/precache-manifest.b7582b03c7256bb3f2adfdab15350324.js",
-  "service-worker.js": "/favorite-memes/service-worker.js"
+  "main.js": "/static/js/main.2ca184c1.chunk.js",
+  "main.js.map": "/static/js/main.2ca184c1.chunk.js.map",
+  "static/js/1.090ebdd9.chunk.js": "/static/js/1.090ebdd9.chunk.js",
+  "static/js/1.090ebdd9.chunk.js.map": "/static/js/1.090ebdd9.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
+  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
+  "index.html": "/index.html",
+  "precache-manifest.d8d7d8a7488e8216d54a1d1af7f6446f.js": "/precache-manifest.d8d7d8a7488e8216d54a1d1af7f6446f.js",
+  "service-worker.js": "/service-worker.js"
 }
