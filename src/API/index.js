@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { MEMES_BEST_URL } from '../global';
 
 const $host = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -13,6 +12,6 @@ export const fetchImage = async (url) => {
 };
 
 export const fetchImagesNames = async (url) => {
-    const { data } = await $host.get(url);
-    return data;
+    const { data } = await $host.get(url + '/config.json');
+    return data.images;
 };

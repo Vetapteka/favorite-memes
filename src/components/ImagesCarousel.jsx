@@ -7,6 +7,15 @@ import arrowIcon from '../assets/arrow.png';
 import styled, { keyframes } from 'styled-components';
 
 const imagePadding = 10;
+const arrowIconWidth = 32;
+const buttonWidth = arrowIconWidth + 8;
+
+class MovingCoords {
+    constructor(from, to) {
+        this.from = from;
+        this.to = to;
+    }
+}
 
 const moveGorisontally = (x) => keyframes`
   from {
@@ -23,11 +32,13 @@ const Panel = styled.div`
 `;
 
 const Button = styled.button`
-    padding: 0 3px;
+    min-width: ${buttonWidth}px;
     background-color: white;
     border: 1px dashed ${COLOR_GREY_LIGHT};
     border-radius: 10px;
+    box-sizing: border-box;
 `;
+
 const Content = styled.div`
     overflow: hidden;
 `;
@@ -47,6 +58,14 @@ const ImageContainer = styled.li`
     height: 400px;
     padding: ${imagePadding}px;
     display: inline-block;
+
+    @media ${(props) => props.theme.media.phone} {
+        height: 250px;
+    }
+
+    @media ${(props) => props.theme.media.tablet} {
+        height: 300px;
+    }
 `;
 
 const Title = styled.h2`
@@ -58,15 +77,16 @@ const Title = styled.h2`
 `;
 
 const ImagesCarousel = ({ url, title }) => {
+    // calculate width of
     const ref = useRef(null);
-    const refMemeLine = useRef(null);
+    const conveyorRef = useRef(null);
 
     const [contentWidth, setContentWidth] = useState(0);
-    const [memeLineWidth, setMemeLineWidth] = useState(0);
+    const [conveyorWidth, setConveyorWidth] = useState(0);
+    const [movingValue, setMovingValue] = useState(0);
 
     useLayoutEffect(() => {
         setContentWidth(ref.current.offsetWidth);
-        // setMemeLineWidth(refMemeLine.current.offsetWidth);
     }, []);
 
     useEffect(() => {
@@ -81,26 +101,28 @@ const ImagesCarousel = ({ url, title }) => {
         };
     }, []);
 
-    const [moving, setMoving] = useState({ from: 0, to: 0 });
+    useEffect(() => {
+        setConveyorWidth(conveyorRef.current.offsetWidth);
+        setMovingValue(contentWidth / 3);
+    });
 
-    const movingValue = 400;
+    const [movingCoord, setMovingCoord] = useState(new MovingCoords(0, 0));
 
     const turnLeft = () => {
-        const toValue = Math.min(moving.to + movingValue, 0);
-
-        setMoving({ from: moving.to, to: toValue });
+        const toValue = Math.min(movingCoord.to + movingValue, 0);
+        setMovingCoord(new MovingCoords(movingCoord.to, toValue));
     };
 
-    /*TODO: Вот тут 80 заменить на ширину кнопки */
     const turnRight = () => {
         const toValue = Math.max(
-            moving.to - movingValue,
-            -(memeLineWidth - (contentWidth - 80 - 10))
+            movingCoord.to - movingValue,
+            -(conveyorWidth - (contentWidth - 2 * buttonWidth - imagePadding))
         );
-        setMoving({ from: moving.to, to: toValue });
+        setMovingCoord(new MovingCoords(movingCoord.to, toValue));
     };
 
     const [imagesSrc, setImagesSrc] = useState([]);
+
     useEffect(() => {
         fetchImagesNames(url).then((names) => {
             const imagesUrls = names.map((name) => url + '/' + name);
@@ -113,13 +135,9 @@ const ImagesCarousel = ({ url, title }) => {
         });
     }, []);
 
-    useEffect(() => {
-        setMemeLineWidth(refMemeLine.current.offsetWidth);
-    });
-
     return (
         <section>
-            <Title>{title}</Title>
+            <Title>{title + ' ' + movingValue + ' ' + contentWidth}</Title>
             <Panel ref={ref}>
                 <Button onClick={turnLeft}>
                     <img
@@ -129,7 +147,7 @@ const ImagesCarousel = ({ url, title }) => {
                     />
                 </Button>
                 <Content>
-                    <Conveyor ref={refMemeLine} moving={moving}>
+                    <Conveyor ref={conveyorRef} moving={movingCoord}>
                         {imagesSrc.map((src, index) => (
                             <ImageContainer key={index}>
                                 <Image src={src} />
